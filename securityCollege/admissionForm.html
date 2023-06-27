@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <title>Admission Form</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+       
+            <!-- <a class="navbar-brand" style="font-weight: 500;" href="#" onclick="myUser()" > <i style='font-size:24px' class='fas'>&#xf1ae; <p id="demo"></p></i></p></a> -->
+            <div class="container">
+                
+                <a class="navbar-brand" style="font-weight: 500;" href="#">College Management</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#myNavBar" aria-label="Toggle Navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+                <div class="collapse navbar-collapse" id="myNavBar">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item active ">
+                            <a class="nav-link " href="../index.html">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Application
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                                <li><a class="dropdown-item" href="./applicationForm.html">Add</a></li>
+                                <li><a class="dropdown-item" href="./viewApplicationRecords.html">View</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Admission
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                                <li><a class="dropdown-item" href="./admissionForm.html">Add</a></li>
+                                <li><a class="dropdown-item" href="./viewAdmissionRecords.html">View</a></li>
+                            </ul>
+                        </li>                      
+                        <li class="nav-item active ">
+                            <a class="nav-link " href="./removeRecords.html">Discontinue</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="demo" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Admission
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                                <li><a class="dropdown-item" href="#">Change Password</a></li>
+                                <li><a class="dropdown-item" onclick="logout()">Logout</a></li>
+                            </ul>
+                            
+                        </li>  
+                        <li class="nav-item active " >
+                            <i style='font-size:24px' class='fas'>&#xf1ae;</i>  
+                                               
+                        </li>  
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="page container-fluid" id="firstdiv">
+        <div class="row justify-content-center" style="--bs-gutter-x: 0">
+            <div class="col-md-5 my-5 shadow bg-body rounded">
+                <form class="p-3" name="ad_registerForm" id="ad_myform">
+                    <h3 class="text-center mb-4 text-dark">Admission Form</h3>
+                    <div class="row mb-3">
+                        <label class="col-2">REGID</label>
+                        <div class="col-10">
+                            <input type="text" name="register" class="form-control" id="registerid" onkeyup="fetchData(this.value)">
+                            <span id="error12"></span>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-2">APPID</label>
+                        <div class="col-10">
+                            <input type="text" name="app" class="form-control" id="appid" readonly>
+                            <span id="error12"></span>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-2">Name</label>
+                        <div class="col-10">
+                            <input type="text" name="name" class="form-control" id="name" readonly>
+                        </div>
+                    </div>
+                    <div class="row mb-3 align-items-center">
+                        <div class="col-2">
+                            <lable>Desigination</lable>
+                        </div>
+                        <div class="col-2">
+                            <label name="Graduate">Graduate</label>
+                            <select class="form-select" name="graduate" id="graduateid" aria-label="Default select example">
+                                <option value="" selected="selected">Choose</option>
+                            </select>
+                        </div>
+                        <div class="col-2">
+                            <label name="Graduate">Department</label>
+                            <select class="form-select" name="department" id="departmentid" aria-label="Default select example">
+                                <option value="" selected="selected">Choose</option>
+                            </select>
+                        </div>
+                        <!-- <div class="col-3">
+                            <label name="department">Department</label>
+                            <select class="form-select" name="department" id="departmentid" aria-label="Default select example">
+                                <option value="" selected="selected">Choose</option>
+                            </select>
+                        </div> -->
+                        <div class="col-5">
+                            <label name="Course">Course</label>
+                            <select class="form-select" name="course" id="courseid" aria-label="Default select example">
+                                <option value="" selected="selected">Choose</option>                   
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-2">CutOff</label>
+                        <div class="col-10">
+                            <input type="text" name="ad_cutoff" class="form-control" id="ad_cutoff" readonly>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-2">Username</label>
+                        <div class="col-10">
+                            <input type="text" name="ad_username" class="form-control" id="ad_username" readonly>
+                            <span id="error14"></span>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-2">Password</label>
+                        <div class="col-10">
+                            <input type="password" name="ad_password" class="form-control" id="ad_password">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-2">Confirm Password</label>
+                        <div class="col-10">
+                            <input type="password" name="ad_confirmpassword" class="form-control" id="ad_confrimpasswordid">
+                        </div>
+                        <div style="margin-left: 6.5rem ;" id="CheckPasswordMatch"></div>
+                        <br>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-6 text-center">
+                            <input type="submit" name="ad_submit" value="submit" id="ad_submit" class="btn btn-primary">
+                            <input type="button" name="ad_reset" value="reset" class="btn btn-dark">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js " integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin=" anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.js"></script>
+    <script src="../assets/js/script.js"></script>
+</body>
+
+</html>

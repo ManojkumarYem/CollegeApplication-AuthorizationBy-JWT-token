@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login OTP Page</title>
+    <link rel="stylesheet" href="../assets/css/otpStyle.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js">
+    </script>
+    <style>
+        #logout {
+            background-color: rgb(22, 22, 22);
+            color: rgb(240, 38, 31);
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="loginBody">
+    <div id="formLogin">
+
+        <div id="login">
+            <h1>LOGIN</h1>
+            <label>UserName</label>
+            <input type="text" name="user" id="userName" placeholder="username" required>
+            <label>Password</label>
+            <input type="password" name="pass" id="pass" placeholder="password" required="Enter the password">
+            <button type="button" onclick="loginCheck()">Login</button>
+         
+            <a href="http://localhost:8080/login"  ><h2>Login with Google</h2></a>
+        </div>
+
+    </div>
+
+    <div>
+
+    </div>
+</div>
+    <script>
+
+        function loginCheck() {
+
+            let userName = document.getElementById('userName').value;
+            let password = document.getElementById('pass').value;
+            let endPoint = 'http://localhost:8080/authenticate?userName=' + userName + '&password=' + password;
+
+            $.ajax({
+                url: endPoint,
+                type: 'Post',
+                cros: true,
+                contentType: "application/text",
+                success: function (response) {
+                    for (const obj in response) {
+                        console.log(response[obj])
+                    }
+                    if (response.data) {
+                        localStorage.setItem("user", userName);
+                        let User= localStorage.getItem("user");
+                        let token = response.data;
+                        console.log(token + "tokennn");
+
+                        localStorage.setItem("AccessToken", token);
+                        let to=localStorage.getItem("AccessToken");
+                        // alert("Login Sucessfully");
+                        window.location = "http://127.0.0.1:5500/Task%209/index.html";
+
+                    }
+
+                    else {
+                        alert("Invalid");
+                        window.location.reload();
+                    }
+
+                }
+                ,
+                error: function () {
+                    alert("InValid Credentials..");
+                    window.location.reload();
+                }
+
+            });
+
+        }
+
+
+
+        function googleLogin(){
+            let AccessToken = "Manojkumar" + localStorage.getItem("AccessToken");
+            $.ajax({
+                url: 'http://localhost:8080/',
+                type: 'GET',
+                contentType: "application/JSON",
+              
+            })
+        }
+
+      
+
+
+
+        //         if(token){
+        //     localStorage.setItem("AccessToken", token);
+        //                     let t = localStorage.getItem("AccessToken");
+        //                     console.log(t);
+        //                     alert("Login Sucessfully" );
+        //                     // window.location.reload();
+        //                     window.location = "http://127.0.0.1:5500/Task%209/index.html";
+
+        // }
+        // else{
+        //     alert("Invalid Credentials");
+        // }
+
+        // function home() {
+
+        //     let AccessToken="Manojkumar"+localStorage.getItem("AccessToken");
+        //     $.ajax({
+        //         url: 'http://localhost:8080/home?Authorization=' + AccessToken ,
+        //         type: 'POST',
+        //         contentType: "application/JSON",
+        //         success: function (result) {
+        //             if (result === "Welcome To Our Community") {
+        //                 window.location = "http://127.0.0.1:5500/HTML/indexManoj.html/Swiggy/index.html";
+        //             } else {
+        //                 alert("Invalid Header");
+        //             }
+
+        //         }
+        //     })
+        // }
+
+        function logout() {
+            let AccessToken = "Manojkumar" + localStorage.getItem("AccessToken");
+            $.ajax({
+                url: 'http://localhost:8080/logoutt?Authorization=' + AccessToken,
+                type: 'POST',
+                contentType: "application/JSON",
+                success: function (result) {
+                    if (result === "Success") {
+                        localStorage.removeItem("AccessToken");
+                        window.location = "http://127.0.0.1:5500/screens/CollegeLogin.html";
+
+                    }
+                }
+            })
+        }
+
+    </script>
+</body>
+
+</html>

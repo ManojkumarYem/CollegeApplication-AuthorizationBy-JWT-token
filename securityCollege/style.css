@@ -1,0 +1,57 @@
+span {
+    color: red;
+    font-style: italic;
+}
+
+form {
+    background: ghostwhite;
+}
+
+body {
+    background: snow;
+}
+
+#index {
+    background-color: #eaeef3;
+}
+
+#h-index {
+    background-color: #262626 !important;
+}
+    
+
+#tablediv {
+    background: snow;
+}
+
+table {
+    background: ghostwhite;
+}
+
+label.error {
+    color: red;
+}
+
+input.error,
+textarea.error {
+    border: 1px solid red;
+    font-weight: 300;
+}
+
+.db {
+    border-radius: 1rem;
+    box-shadow: 0px 0px 5px 0px;
+}
+.user{
+    color: #000;
+    display: flex;
+    width: 9rem;
+    justify-content: space-around;
+    position: relative;
+    top: 0.5rem;
+}
+
+.fas{
+    position: relative;
+    top: 0.5rem;
+}
